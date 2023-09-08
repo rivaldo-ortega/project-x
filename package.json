@@ -1,0 +1,11 @@
+{
+  "name": "project-x",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Rivaldo",
+  "license": "MIT",
+  "workspaces": [
+    "client",
+    "generator-service"
+  ]
+}
