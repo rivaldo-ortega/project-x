@@ -8,10 +8,11 @@ app.use(cors())
 
 const port = 4000
 
-const secretKey = 'your-secret-key'
+const secretKey = 'secret-key'
 
-app.get('/api/generate', (req, res) => {
-  const token = jwt.sign({}, secretKey, {expiresIn: '1h'})
+app.post('/api/generate', (req, res) => {
+  const {id} = req.body
+  const token = jwt.sign(id, secretKey)
   res.json({token})
 })
 

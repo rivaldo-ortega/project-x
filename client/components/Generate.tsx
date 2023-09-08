@@ -11,6 +11,7 @@ const TokenGenerator = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({id: generatedToken}),
       })
       const data = await response.json()
       setGeneratedToken(data.token)
@@ -19,17 +20,29 @@ const TokenGenerator = () => {
     }
   }
 
+  const handleCopyToke = () => {
+    navigator.clipboard.writeText(generatedToken)
+  }
+
   return (
-    <div className='flex flex-col p-2'>
+    <div className='flex flex-col p-2 w-1/2'>
       <button className='bg-purple-500 rounded p-2' onClick={generateToken}>
         Generate Token
       </button>
-      {generatedToken && (
-        <div>
-          <h2>Generated Token:</h2>
-          <pre>{generatedToken}</pre>
-        </div>
-      )}
+      <div className='w-full mt-2'>
+        {generatedToken && (
+          <div className='flex flex-col gap-2 w-full h-auto'>
+            <h2 className='text-yellow-500'>Generated Token:</h2>
+            <div className='break-words'>{generatedToken}</div>
+            <button
+              onClick={handleCopyToke}
+              className='rounded bg-yellow-300 p-2 w-28'
+            >
+              Copy
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
